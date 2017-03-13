@@ -9,8 +9,9 @@ RUN apt-get update -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -o /root/bison-3.0.4.tar.xz -fSL http://www.nic.funet.fi/pub/gnu/ftp.gnu.org/pub/gnu/bison/bison-3.0.4.tar.xz \
-    && curl -o /root/flex-2.6.3.tar.gz -fSL https://github.com/westes/flex/releases/download/v2.6.3/flex-2.6.3.tar.gz \
     && curl -o /root/bison-3.0.4.tar.xz.sig -L http://www.nic.funet.fi/pub/gnu/ftp.gnu.org/pub/gnu/bison/bison-3.0.4.tar.xz.sig \
+    && curl -o /root/flex-latest.tar.gz -fSL https://github.com/westes/flex/archive/master.zip \
+    # && curl -o /root/flex-2.6.3.tar.gz -fSL https://github.com/westes/flex/releases/download/v2.6.3/flex-2.6.3.tar.gz \
     && gpg --keyserver keys.gnupg.net --recv-keys 78D5264E \
     && gpg --verify /root/bison-3.0.4.tar.xz.sig \
     && cd /root/ \
@@ -20,8 +21,8 @@ RUN curl -o /root/bison-3.0.4.tar.xz -fSL http://www.nic.funet.fi/pub/gnu/ftp.gn
     && make \
     && make install \
     && cd /root/ \
-    && tar -xf flex-2.6.3.tar.gz \
-    && cd flex-2.6.3 \
+    && tar -xf flex-latest.tar.gz \
+    && cd flex-latest \
     && ./configure \
     && make \
     && make install \
